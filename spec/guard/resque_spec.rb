@@ -32,8 +32,13 @@ describe Guard::Resque do
       obj.send(:cmd).should match /COUNT=2/
     end
 
-    it "should accept verbose option" do
+    it "should accept vverbose option" do
       obj = Guard::Resque.new [], :verbose => true
+      obj.send(:cmd).should match /\bVERBOSE=1/
+    end
+
+    it "should accept verbose option" do
+      obj = Guard::Resque.new [], :vverbose => true
       obj.send(:cmd).should match /VVERBOSE=1/
     end
 

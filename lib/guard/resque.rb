@@ -75,7 +75,10 @@ module Guard
       command << "COUNT=#{@options[:count] || '1'} "
 
       # verbose setting
-      command << "VVERBOSE=1 " if @options[:verbose]
+      command << "VERBOSE=1 " if @options[:verbose]
+
+      # very verbose setting
+      command << "VVERBOSE=1 " if @options[:vverbose]
 
       # task setting
       command << "#{@options[:task] || 'resque:work'} "
