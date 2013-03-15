@@ -21,6 +21,7 @@ module Guard
     #  - :vverbose e.g. true
     #  - :trace e.g. true
     #  - :stop_signal e.g. :QUIT or :SIGQUIT
+    #  - :zeus e.g. true
     def initialize(watchers = [], options = {})
       @options = options
       @pid = nil
@@ -28,6 +29,7 @@ module Guard
       @options[:queue] ||= DEFAULT_QUEUE
       @options[:count] ||= DEFAULT_COUNT
       @options[:task] ||= (@options[:count].to_i == 1) ? DEFAULT_TASK_SINGLE : DEFAULT_TASK_MULTIPLE
+      @options[:zeus] ||= false
       super
     end
 
@@ -85,7 +87,11 @@ module Guard
     private
 
     def cmd
-      command = ['bundle exec rake', @options[:task].to_s]
+      command = []
+      exec = @options[:zeus] ? 'zeus' : 'bundle exec'
+      command << exec
+      command << 'rake'
+      command <<  @options[:task].to_s
 
       # trace setting
       command << '--trace' if @options[:trace]
