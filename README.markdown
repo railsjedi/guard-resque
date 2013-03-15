@@ -50,6 +50,7 @@ You can customize the resque task via the following options:
 * `vverbose`: whether to use very verbose logging (defaults to `nil`)
 * `trace`: whether to include `--trace` on the rake command (defaults to `nil`)
 * `stop_signal`: how to kill the process when restarting (defaults to `QUIT`)
+* `zeus`: run resque through zeus (defaults to `false`)
 
 
 ## Development

@@ -47,6 +47,12 @@ describe Guard::Resque do
       obj.send(:cmd).should_not include Guard::Resque::DEFAULT_TASK_SINGLE
     end
 
+    it 'should accept :zeus option' do
+      obj = Guard::Resque.new [], :zeus => true
+      obj.send(:cmd).should include 'zeus'
+      obj.send(:cmd).should_not include 'bundle exec'
+    end
+
     it 'should provide default options' do
       obj = Guard::Resque.new []
       obj.send(:env).should include 'QUEUE' => Guard::Resque::DEFAULT_QUEUE.to_s
