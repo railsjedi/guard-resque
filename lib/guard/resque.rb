@@ -21,6 +21,7 @@ module Guard
     #  - :vverbose e.g. true
     #  - :trace e.g. true
     #  - :stop_signal e.g. :QUIT or :SIGQUIT
+    #  - :load_environment e.g. false
     def initialize(watchers = [], options = {})
       @options = options
       @pid = nil
@@ -85,7 +86,9 @@ module Guard
     private
 
     def cmd
-      command = ['bundle exec rake', @options[:task].to_s]
+      command = ['bundle exec rake']
+      command << 'environment' if @options[:load_environment]
+      command << @options[:task].to_s
 
       # trace setting
       command << '--trace' if @options[:trace]

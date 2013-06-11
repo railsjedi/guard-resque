@@ -3,6 +3,7 @@
 #  - :task (defaults to 'resque:work' if :count is 1; 'resque:workers', otherwise)
 #  - :verbose / :vverbose (set them to anything but false to activate their respective modes)
 #  - :trace
+#  - :load_environment
 #  - :queue (defaults to "*")
 #  - :count (defaults to 1)
 #  - :environment (corresponds to RAILS_ENV for the Resque worker)
