@@ -39,6 +39,11 @@ describe Guard::Resque do
       obj.send(:cmd).should include '--trace'
     end
 
+    it 'should accept :load_environment option' do
+      obj = Guard::Resque.new [], :load_environment => true
+      obj.send(:cmd).should include 'environment'
+    end
+
     it 'should accept :task option' do
       task = 'environment foo'
 
